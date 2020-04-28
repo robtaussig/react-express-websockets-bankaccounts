@@ -25,10 +25,6 @@ app.post("/account/:account_id/deposit/:deposit", (req, res) => {
   return res.status(200).json({ balance: newBalance });
 });
 
-app.listen(port, () =>
-  console.log(`The app is listening at http://localhost:${port}`)
-);
-
 const server = http.createServer(app);
 
 const wss = new WebSocket.Server({ server, path: "/ws" });
@@ -40,3 +36,7 @@ wss.on("connection", function connection(ws) {
 
   ws.send("something");
 });
+
+server.listen(port, () =>
+  console.log(`The app is listening at http://localhost:${port}`)
+);
